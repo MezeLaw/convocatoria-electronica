@@ -2,6 +2,10 @@ import React from 'react';
 import { Badge } from 'react-bootstrap';
 
 const Convocatoria = ({ convocatoria, addToFavorites }) => {
+  const handleAddToFavorites = () => {
+    addToFavorites(convocatoria);
+  };
+
   return (
     <div key={convocatoria.id} className="col-md-4 mb-4">
       <div className="card" style={{ minHeight: "100%" }}>
@@ -16,7 +20,7 @@ const Convocatoria = ({ convocatoria, addToFavorites }) => {
           <div className="d-flex justify-content-between align-items-end mt-auto">
             <button
               className="btn btn-warning"
-              onClick={() => addToFavorites(convocatoria)}
+              onClick={handleAddToFavorites}
             >
               Agregar a favoritos
             </button>
