@@ -23,3 +23,31 @@ code {
   max-height: 200px;  
   object-fit: cover;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+#root {
+  min-height: 100%;
+  position: relative;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.navbar-logo {
+  width: 50px;  
+  height: auto;  
+}
+
+.list-padding {
+  padding-bottom: 10rem;
+}
