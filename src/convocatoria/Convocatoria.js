@@ -69,14 +69,10 @@ const Convocatoria = ({ convocatoria, addToFavorites }) => {
                 <strong>Fecha de fin: </strong>
                 {modalData.fecha_fin}
               </p>
-              <p>
+              <p style={{ wordWrap: 'break-word', maxWidth: '100%' }}>
                 <strong>Enlace: </strong>
                 <a href={modalData.link}>{modalData.link}</a>
-              </p>
-              <p>
-                <strong>URL: </strong>
-                <a href={modalData.url}>{modalData.url}</a>
-              </p>
+              </p> 
             </>
           ) : (
             <p>cargando...</p>
