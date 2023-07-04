@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './navbar/Navbar';
 import Favoritos from './favoritos/favoritos';
 import Badge from 'react-bootstrap/Badge';
+import Footer from './footer/Footer';
 
 function App() {
   const [convocatorias, setConvocatorias] = useState([]);
@@ -87,6 +88,7 @@ function App() {
           toggleFavoritos={toggleFavoritos}
         />  
       </div>
+      <Footer/>
     </div>
   );
 }
