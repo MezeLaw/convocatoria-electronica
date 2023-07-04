@@ -35,4 +35,23 @@
   to {
     transform: rotate(360deg);
   }
-} 
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+#root {
+  min-height: 100%;
+  position: relative;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+

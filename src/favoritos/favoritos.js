@@ -1,7 +1,7 @@
 import React from 'react';
 import Badge from 'react-bootstrap/Badge';
 
-const Favoritos = ({ favoritos, show, toggleFavoritos }) => {
+const Favoritos = ({ favoritos, show, toggleFavoritos, removeFromFavorites }) => {
   return (
     <div
       className={`offcanvas offcanvas-end${show ? ' show' : ''}`}
@@ -17,18 +17,18 @@ const Favoritos = ({ favoritos, show, toggleFavoritos }) => {
         <ul className="list-group">
           {favoritos.map((convocatoria) => (
             <li key={convocatoria.id} className="list-group-item">
-              <button className="btn-close text-reset"></button>
+              <button className="btn-close text-reset" onClick={() => removeFromFavorites(convocatoria.id)}></button>
               <img src={convocatoria.imagen} alt="imagen-convocatoria" className="card-img-top" />
-              <h5>{convocatoria.titulo}</h5> 
+              <h5>{convocatoria.titulo}</h5>
               <Badge bg={convocatoria.estado === 'abierta' ? 'success' : 'danger'}>
-                    {convocatoria.estado}
-              </Badge> 
+                {convocatoria.estado}
+              </Badge>
             </li>
           ))}
         </ul>
       </div>
     </div>
   );
-}
+};
 
 export default Favoritos;

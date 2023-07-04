@@ -1,38 +1,29 @@
 import React from 'react';
+import { Navbar, Nav, Form, FormControl } from 'react-bootstrap';
+import logo from './../logo.png';
 
-function Navbar({ toggleFavoritos, setFiltroTitulo }) {
+function CustomNavbar({ toggleFavoritos, setFiltroTitulo }) {
   const handleSearchChange = (event) => {
     setFiltroTitulo(event.target.value);
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="/">Convocatorias</a>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <button className="btn btn-link nav-link" onClick={toggleFavoritos}>
-                Favoritos
-              </button>
-            </li>
-          </ul>
-        </div>
-        <form className="d-flex">
-          <input
-            className="form-control me-2"
-            type="search"
-            placeholder="Buscar por título"
-            aria-label="Buscar"
-            onChange={handleSearchChange}
-          />
-        </form>
-      </div>
-    </nav>
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand href="/">
+        <img src={logo} alt="Logo" className="logo navbar-logo" />
+        Convocatorias
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="navbarNav" />
+      <Navbar.Collapse id="navbarNav">
+        <Nav className="ml-auto">
+          <Nav.Link onClick={toggleFavoritos}>Favoritos</Nav.Link>
+        </Nav>
+        <Form inline>
+          <FormControl type="search" placeholder="Buscar por título" className="mr-sm-2" onChange={handleSearchChange} />
+        </Form>
+      </Navbar.Collapse>
+    </Navbar>
   );
 }
 
-export default Navbar;
+export default CustomNavbar;
