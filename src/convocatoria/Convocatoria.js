@@ -1,9 +1,27 @@
-import React from 'react';
-import { Badge } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Badge, Modal, Button } from 'react-bootstrap';
 
 const Convocatoria = ({ convocatoria, addToFavorites }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState(null);
+
   const handleAddToFavorites = () => {
     addToFavorites(convocatoria);
+  };
+
+  const handleOpenModal = async () => {
+    try {
+      const response = await fetch(`https://www.cultura.gob.ar/api/v2.0/convocatorias/${convocatoria.id}`);
+      const data = await response.json();
+      setModalData(data);
+      setShowModal(true);
+    } catch (error) {
+      console.error('Error fetching convocatoria details:', error);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -28,12 +46,48 @@ const Convocatoria = ({ convocatoria, addToFavorites }) => {
           <div className="mt-2">
             <button
               className="btn btn-primary"
+              onClick={handleOpenModal}
             >
               Ver más
             </button>
           </div>
         </div>
       </div>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Detalle</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {modalData ? (
+            <>
+              <img src={modalData.imagen} alt="Imagen Convocatoria" style={{ maxWidth: '100%', marginBottom: '10px' }} />
+              <p>
+                <strong>Fecha de inicio: </strong>
+                {modalData.fecha_inicio}
+              </p>
+              <p>
+                <strong>Fecha de fin: </strong>
+                {modalData.fecha_fin}
+              </p>
+              <p>
+                <strong>Enlace: </strong>
+                <a href={modalData.link}>{modalData.link}</a>
+              </p>
+              <p>
+                <strong>URL: </strong>
+                <a href={modalData.url}>{modalData.url}</a>
+              </p>
+            </>
+          ) : (
+            <p>cargando...</p>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal> 
     </div>
   );
 };
