@@ -21,6 +21,7 @@ function App() {
       const response = await fetch('https://www.cultura.gob.ar/api/v2.0/convocatorias', {
         mode: 'no-cors',
       });
+      console.log('Response:', response);
       const data = await response.json();
       setConvocatorias(data.results);
     } catch (error) {
