@@ -18,9 +18,9 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-      const targetUrl = 'https://www.cultura.gob.ar/api/v2.0/convocatorias';
-      const response = await fetch(proxyUrl + targetUrl);
+      const response = await fetch('https://www.cultura.gob.ar/api/v2.0/convocatorias', {
+        mode: 'no-cors',
+      });
       const data = await response.json();
       setConvocatorias(data.results);
     } catch (error) {
