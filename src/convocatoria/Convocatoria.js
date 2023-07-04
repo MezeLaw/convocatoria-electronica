@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Badge, Modal, Button } from 'react-bootstrap';
-
+import fakeResponse from './../data.json'
 const Convocatoria = ({ convocatoria, addToFavorites }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState(null);
@@ -9,11 +9,10 @@ const Convocatoria = ({ convocatoria, addToFavorites }) => {
     addToFavorites(convocatoria);
   };
 
+  /*
   const handleOpenModal = async () => {
     try {
-      const response = await fetch(`https://www.cultura.gob.ar/api/v2.0/convocatorias/${convocatoria.id}`, {
-        mode: 'no-cors', 
-      });
+      const response = await fetch(`https://www.cultura.gob.ar/api/v2.0/convocatorias/${convocatoria.id}`);
       const data = await response.json();
       setModalData(data);
       setShowModal(true);
@@ -21,6 +20,15 @@ const Convocatoria = ({ convocatoria, addToFavorites }) => {
       console.error('Error fetching convocatoria details:', error);
     }
   };
+  */
+
+  const handleOpenModal = () => {
+    const convocatoriaId = convocatoria.id;
+    const convocatoriaDetail = fakeResponse.results.find(convocatoria => convocatoria.id === convocatoriaId);
+    setModalData(convocatoriaDetail);
+    setShowModal(true);
+  };
+  
 
   const handleCloseModal = () => {
     setShowModal(false);

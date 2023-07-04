@@ -4,7 +4,7 @@ import CustomNavbar from './navbar/Navbar';
 import Favoritos from './favoritos/favoritos';
 import Footer from './footer/Footer';
 import Convocatoria from './convocatoria/Convocatoria';
-
+import fakeResponse from './data.json'
 function App() {
   const [convocatorias, setConvocatorias] = useState([]);
   const [favoritos, setFavoritos] = useState([]);
@@ -16,16 +16,26 @@ function App() {
     loadFavoritesFromLocalStorage();
   }, []);
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch('https://www.cultura.gob.ar/api/v2.0/convocatorias');
-      console.log('Response:', response);
-      const data = await response.json();
-      setConvocatorias(data.results);
-    } catch (error) {
-      console.log('Error:', error);
-    }
-  };
+  /*
+    const fetchData = async () => {
+  try {
+    const response = await fetch('https://www.cultura.gob.ar/api/v2.0/convocatorias/');
+    console.log('Response:', response);
+    const data = await response.json();
+    setConvocatorias(response);
+  } catch (error) {
+    console.log('Error:', error);
+  }
+};
+  */
+
+const fetchData = async () => {
+  try { 
+    setConvocatorias(fakeResponse.results);
+  } catch (error) {
+    console.log('Error:', error);
+  }
+};
 
   const loadFavoritesFromLocalStorage = () => {
     const storedFavorites = localStorage.getItem('favoritos');
